@@ -1,0 +1,21 @@
+{
+  "name": "plz-create-me",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.15.13"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "dotenv": "^16.5.0",
+    "inquirer": "^12.6.0",
+    "openai": "^4.97.0",
+    "ora": "^8.2.0"
+  }
+}
