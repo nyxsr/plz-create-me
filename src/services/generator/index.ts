@@ -4,12 +4,14 @@ import AIProvider from "../ai-agent/ai-provider";
 
 export default class Generator {
   public static async generateInitialShell(
+    projectName: string,
     framework: string,
-    additionals?: string[],
+    projectPath: string,
+    additional?: string[],
   ) {
     try {
       const result = await new AIProvider().createChat(
-        GENERATE_INIT_SHELL(framework, additionals),
+        GENERATE_INIT_SHELL(projectName, framework, projectPath, additional),
       );
 
       if (result) {

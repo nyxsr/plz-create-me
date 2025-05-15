@@ -4,7 +4,7 @@ export abstract class Deepseek extends BaseAIAgent {
   constructor() {
     super({
       baseURL: "https://api.deepseek.com",
-      apiKey: process.env.DEEPSEEK_KEY,
+      apiKey: process.env.DEEPSEEK_API_KEY!,
     });
   }
 
