@@ -13,9 +13,6 @@ import chalk from 'chalk';
 import path from 'path';
 import fs from 'fs';
 
-// Initialize dotenv
-configDotenv({ path: ".env.local" });
-
 // Create a new Commander program
 const program = new Command();
 
@@ -23,7 +20,7 @@ const program = new Command();
 program
   .name("plz-create-me")
   .description("Generate your project easily using AI.")
-  .version("0.0.6");
+  .version("0.0.7");
 
 program
   .command("create")
