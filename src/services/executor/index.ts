@@ -1,59 +1,37 @@
 import { ShellCommandValidator } from "../../utils/validator";
-import { spawn } from "bun";
+import { spawn } from "child_process"; // Use Node.js's spawn
 
 export default class Executor {
   static async executeSh(command: string): Promise<void> {
-    // Bun's spawn returns a Subprocess object
-    const process = spawn(["sh", "-c", command], {
-      stdout: "pipe",
-      stderr: "pipe",
-      stdin: "pipe",
+    // Use Node.js's spawn instead of Bun's spawn
+    const process = spawn("sh", ["-c", command], {
+      stdio: ["pipe", "pipe", "pipe"], // stdin, stdout, stderr
     });
 
-    // For stdout, we need to use the readable stream properly
-    const stdout = process.stdout;
-    const reader = stdout.getReader();
-    (async () => {
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          console.log(new TextDecoder().decode(value));
-        }
-      } catch (error) {
-        console.error("Error reading stdout:", error);
-      }
-    })();
+    // Handle stdout
+    process.stdout.on("data", (data: Buffer) => {
+      console.log(data.toString());
+    });
 
-    // For stderr, similar approach but with error output
-    if (process.stderr) {
-      const stderrReader = process.stderr.getReader();
-      (async () => {
-        try {
-          while (true) {
-            const { done, value } = await stderrReader.read();
-            if (done) break;
-            console.error(new TextDecoder().decode(value));
-          }
-        } catch (error) {
-          console.error("Error reading stderr:", error);
-        }
-      })();
-    }
+    // Handle stderr
+    process.stderr.on("data", (data: Buffer) => {
+      console.error(data.toString());
+    });
 
-    // Create a promise to handle the process completion
+    // Handle process completion
     return new Promise<void>((resolve, reject) => {
-      // We need to use exited promise instead of 'on' event
-      process.exited.then((exitCode: number) => {
-        console.log(`Process exited with code ${exitCode}`);
-        if (exitCode === 0) {
+      process.on("close", (code: number) => {
+        console.log(`Process exited with code ${code}`);
+        if (code === 0) {
           resolve();
         } else {
-          reject(new Error(`Process exited with code ${exitCode}`));
+          reject(new Error(`Process exited with code ${code}`));
         }
-      }).catch((error: Error) => {
+      });
+
+      process.on("error", (error: Error) => {
         reject(error);
       });
-  });
+    });
   }
 }

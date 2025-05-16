@@ -1,0 +1,3 @@
+entrypoints = ["index.ts"]
+outdir = "dist"
+target = "node"
