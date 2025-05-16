@@ -39,3 +39,62 @@ Install the package globally:
 bun install -g plz-create-me
 
 ```
+
+Or use it with npx (if installed locally):
+
+```bash
+npx plz-create-me
+```
+
+---
+
+## 🧠 How It Works
+
+1. You provide project details via CLI prompts.
+1. The AI provider generates a shell script based on your selected framework.
+1. The script is validated for safety:
+   - Syntax is checked.
+   - Each command is verified for availability.
+1. The shell commands are executed, initializing your project structure.
+
+---
+
+## 🧰 CLI Usage
+
+Start the interactive CLI:
+
+```bash
+plz-create-me
+```
+
+You will be prompted to select:
+
+    - Project name
+    - Framework
+    - Target directory
+    - Package manager
+    - Additional tooling
+
+Once confirmed, the tool will scaffold the project using validated shell commands.
+
+---
+
+## ⚙️ Configuration
+
+Add your Deepseek API key to the environment variables :
+
+```bash
+export DEEPSEEK_API_KEY="YOUR_API_KEY"
+```
+
+---
+
+## 📜 License
+
+MIT
+
+---
+
+## 🙌 Credits
+
+Created with ❤️ by [Sahrul Ramdan](https://github.com/nyxsr).
