@@ -23,7 +23,7 @@ const program = new Command();
 program
   .name("plz-create-me")
   .description("Generate your project easily using AI.")
-  .version("0.0.3");
+  .version("0.0.4");
 
 program
   .command("create")
