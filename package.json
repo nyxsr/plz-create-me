@@ -1,8 +1,13 @@
 {
   "name": "plz-create-me",
   "module": "index.ts",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "type": "module",
+  "author": "Sahrul Ramdan <nyxsr> (https://github.com/nyxsr)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nyxsr/plz-create-me"
+  },
   "bin": {
     "plz-create-me": "./dist/index.js"
   },
