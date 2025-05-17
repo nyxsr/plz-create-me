@@ -1,7 +1,7 @@
 {
   "name": "plz-create-me",
   "module": "index.ts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "author": "Sahrul Ramdan <nyxsr> (https://github.com/nyxsr)",
   "keywords": [

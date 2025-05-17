@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 import { configDotenv } from "dotenv";
 import { Command } from "commander";
@@ -13,14 +13,13 @@ import chalk from 'chalk';
 import path from 'path';
 import fs from 'fs';
 
-// Create a new Commander program
 const program = new Command();
 
 // Setup program information
 program
   .name("plz-create-me")
   .description("Generate your project easily using AI.")
-  .version("0.0.7");
+  .version("0.0.8");
 
 program
   .command("create")
@@ -41,7 +40,6 @@ program
   });
 
 async function runProjectCreation(options: any) {
-  // Check API key
   const spinCheck = ora("Checking DEEPSEEK_API_KEY...").start();
   const deepseekApiKey = process.env.DEEPSEEK_API_KEY;
 
@@ -276,5 +274,4 @@ process.on('uncaughtException', (error) => {
   }
 });
 
-// Parse command line arguments and execute
 program.parse();
